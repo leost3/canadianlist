@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { ZodError } from 'zod';
 import { CreateStatusSchema } from '../../domain/status/status.schema';
-import { StatusService } from '../../domain/status/status.service';
+import { StatusService } from '../../domain/status/StatusService';
+import { query } from '../../infrastructure/middleware/database';
 
 export class StatusController {
   private statusService: StatusService;
@@ -10,9 +11,11 @@ export class StatusController {
     this.statusService = new StatusService();
   }
 
-  getStatus(req: Request, res: Response): void {
+  async  getStatus(req: Request, res: Response): Promise<void> {
     try {
       const status = this.statusService.getStatus();
+      const result = await query('SELECT 1+1')
+      console.log(result)
       res.status(200).json(status);
     } catch (error) {
       if (error instanceof ZodError) {
