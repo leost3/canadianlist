@@ -13,7 +13,7 @@ export class StatusController {
   getStatus(req: Request, res: Response): void {
     try {
       const status = this.statusService.getStatus();
-      res.json(status);
+      res.status(200).json(status);
     } catch (error) {
       if (error instanceof ZodError) {
         res.status(500).json({
