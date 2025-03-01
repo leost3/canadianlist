@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
+import { CreateStatusSchema } from 'src/domain/status/status.schema';
+import { StatusService } from 'src/domain/status/StatusService';
+import { query } from 'src/infrastructure/middleware/database';
 import { ZodError } from 'zod';
-import { CreateStatusSchema } from '../../domain/status/status.schema';
-import { StatusService } from '../../domain/status/StatusService';
-import { query } from '../../infrastructure/middleware/database';
+
 
 export class StatusController {
   private statusService: StatusService;
@@ -14,7 +15,7 @@ export class StatusController {
   async  getStatus(req: Request, res: Response): Promise<void> {
     try {
       const status = this.statusService.getStatus();
-      const result = await query('SELECT 1+1')
+      const result = await query('SELECT * from pg_stat_activity')
       console.log(result)
       res.status(200).json(status);
     } catch (error) {
