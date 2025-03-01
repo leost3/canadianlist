@@ -12,12 +12,30 @@ export class StatusController {
     this.statusService = new StatusService();
   }
 
-  async  getStatus(req: Request, res: Response): Promise<void> {
+  async getStatus(req: Request, res: Response): Promise<void> {
     try {
       const status = this.statusService.getStatus();
-      const result = await query('SELECT * from pg_stat_activity')
-      console.log(result)
-      res.status(200).json(status);
+      const datname = process.env.POSTGRES_DB
+      const updatedAt = new Date().toISOString()
+      const databaseVersionResult = await query("SHOW server_version;")
+      const version = databaseVersionResult.rows[0].server_version
+      const maxConnectionsResult = await query("SHOW max_connections;")
+      const maxConnections = maxConnectionsResult.rows[0].max_connections
+      const databaseOpenedConnectionsResult = await query({
+        text: "SELECT COUNT(*):: int FROM pg_stat_activity WHERE datname = $1;",
+        values: [datname]
+      })
+      const openConnections = databaseOpenedConnectionsResult.rows[0].count
+      res.status(200).json({
+        updatedAt,
+        dependencies: {
+          database: {
+            version,
+            maxConnections,
+            openConnections
+          }
+        }
+      });
     } catch (error) {
       if (error instanceof ZodError) {
         res.status(500).json({
