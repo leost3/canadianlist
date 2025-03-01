@@ -12,8 +12,14 @@ export const query = async (queryObject: any) => {
     port: parseInt(process.env.POSTGRES_PORT ?? '5432'),
     database: process.env.POSTGRES_DB,
   })
-  await client.connect()
-  const result = await client.query(queryObject)
-  await client.end()
-  return result
+  try {
+    await client.connect()
+    const result = await client.query(queryObject)
+    return result
+  } catch (e) {
+    console.error(e);
+    throw new Error(`error: ${e}`)
+  } finally {
+    await client.end()
+  }
 }
