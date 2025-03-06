@@ -11,6 +11,7 @@ export const query = async (queryObject: any) => {
     host: process.env.POSTGRES_HOST,
     port: parseInt(process.env.POSTGRES_PORT ?? '5432'),
     database: process.env.POSTGRES_DB,
+    ssl: process.env.NODE_ENV === 'development' ? false : true
   })
   try {
     await client.connect()
