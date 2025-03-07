@@ -13,7 +13,7 @@
     "build": "tsup src",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "migration:create": "node-pg-migrate --migrations-dir infra/migrations create",
+    "migration:create": "node-pg-migrate --migrations-dir src/infrastructure/migrations create",
     "migration:up": "node-pg-migrate -m infra/migrations  up"
   },
   "dependencies": {
