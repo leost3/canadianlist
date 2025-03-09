@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateStatusSchema } from 'src/domain/status/status.schema';
 import { StatusService } from 'src/domain/status/StatusService';
-import { query } from 'src/infrastructure/middleware/database';
+import { query } from 'src/infrastructure/database';
 import { ZodError } from 'zod';
 
 
