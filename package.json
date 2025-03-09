@@ -11,12 +11,13 @@
     "services:stop": "docker compose -f compose.yaml stop",
     "services:down": "docker compose -f compose.yaml down",
     "build": "tsup src",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watchAll --runInBand",
     "migration:create": "node-pg-migrate --migrations-dir src/infrastructure/migrations create",
-    "migration:up": "node-pg-migrate -m infra/migrations  up"
+    "migration:up": "node-pg-migrate -m src/infrastructure/migrations  up"
   },
   "dependencies": {
+    "dotenv-expand": "^11.0.6",
     "express": "^4.18.2",
     "node-pg-migrate": "^6.2.2",
     "pg": "^8.11.3",
@@ -29,6 +30,7 @@
     "@types/pg": "^8.11.11",
     "dotenv": "^16.4.4",
     "jest": "^29.7.0",
+    "node-fetch": "^3.3.2",
     "nodemon": "^3.0.1",
     "ts-jest": "^29.2.6",
     "tsup": "^8.4.0",
