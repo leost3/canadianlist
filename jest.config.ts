@@ -5,7 +5,8 @@ const config: Config.InitialOptions = {
   testEnvironment: 'node',   // Set the test environment to Node.js
   moduleNameMapper: {
     "^src/(.*)$": "<rootDir>/src/$1"
-  }
+  },
+  testTimeout: 60000
 };
 
 export default config;

@@ -1,10 +1,14 @@
+import { orquestrator } from "src/application/__utils__/orquestrator"
 import { query } from "src/infrastructure/database"
 
 require('dotenv').config()
-describe('tests end points /migrations', () => {
+const cleanDb = () => query("drop schema public cascade; create schema public")
 
-  const cleanDb = () => query("drop schema public cascade; create schema public")
-  beforeAll(cleanDb)
+describe('tests end points /migrations', () => {
+  beforeAll(async () => {
+    await orquestrator()
+    await cleanDb()
+  })
 
   test('GET to /api/migrations returns 200', async () => {
 
