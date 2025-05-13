@@ -14,7 +14,7 @@
     "test": "npm run services:up &&  concurrently --success command-jest --names jest,server  \"jest --runInBand\" \"tsx watch src/index.ts\" --kill-others --hide server",
     "test:watch": "jest --watchAll --runInBand",
     "migration:create": "node-pg-migrate --migrations-dir src/infrastructure/migrations create",
-    "migration:up": "node-pg-migrate -m src/infrastructure/migrations up",
+    "migration:up": "node-pg-migrate -m src/infrastructure/migrations --envPath .env.development  up",
     "wait-for-db": "node src/infrastructure/scripts/wait-for-db.js"
   },
   "dependencies": {

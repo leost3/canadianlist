@@ -3,7 +3,7 @@ import dotenvExpand from 'dotenv-expand';
 import pg from 'pg';
 const { Client } = pg
 
-const config = dotenv.config();
+const config = dotenv.config({ path: '.env.development' });
 dotenvExpand.expand(config);
 
 export const query = async (queryObject: any) => {
