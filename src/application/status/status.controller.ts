@@ -1,9 +1,8 @@
-import { Request, Response } from 'express';
-import { CreateStatusSchema } from 'src/domain/status/status.schema';
-import { StatusService } from 'src/domain/status/StatusService';
-import { query } from 'src/infrastructure/database';
-import { ZodError } from 'zod';
-
+import { Request, Response } from "express";
+import { CreateStatusSchema } from "src/domain/status/status.schema";
+import { StatusService } from "src/domain/status/StatusService";
+import { query } from "src/infrastructure/database";
+import { ZodError } from "zod";
 
 export class StatusController {
   private statusService: StatusService;
@@ -22,29 +21,29 @@ export class StatusController {
       const maxConnections = maxConnectionsResult.rows[0].max_connections
       const databaseOpenedConnectionsResult = await query({
         text: "SELECT COUNT(*):: int FROM pg_stat_activity WHERE datname = $1;",
-        values: [datname]
-      })
-      const openConnections = databaseOpenedConnectionsResult.rows[0].count
+        values: [datname],
+      });
+      const openConnections = databaseOpenedConnectionsResult.rows[0].count;
       res.status(200).json({
         updatedAt,
         dependencies: {
           database: {
             version,
             maxConnections,
-            openConnections
-          }
-        }
+            openConnections,
+          },
+        },
       });
     } catch (error) {
       if (error instanceof ZodError) {
         res.status(500).json({
-          error: 'Internal validation error',
-          details: error.errors
+          error: "Internal validation error",
+          details: error.errors,
         });
       } else {
         res.status(500).json({
-          error: 'Internal server error',
-          message: error instanceof Error ? error.message : 'Unknown error'
+          error: "Internal server error",
+          message: error instanceof Error ? error.message : "Unknown error",
         });
       }
     }
@@ -63,19 +62,21 @@ export class StatusController {
     } catch (error) {
       if (error instanceof ZodError) {
         res.status(400).json({
-          error: 'Validation error',
-          details: error.errors
+          error: "Validation error",
+          details: error.errors,
         });
       } else {
         res.status(500).json({
-          error: 'Internal server error',
-          message: error instanceof Error ? error.message : 'Unknown error'
+          error: "Internal server error",
+          message: error instanceof Error ? error.message : "Unknown error",
         });
       }
     }
   }
 
   getWelcome(req: Request, res: Response): void {
-    res.send('Hello from BuyCanadian!! Here you gonna find all canadian products with discount, fuck the US, fuck you english!!! vive la liberte!!!');
+    res.send(
+      "Hello from BuyCanadian!! Here you gonna find all canadian products with discount, fuck the US, fuck you english!!! vive la liberte!!!",
+    );
   }
 }
