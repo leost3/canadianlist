@@ -11,7 +11,7 @@ export class MigrationsController {
     this.statusService = new StatusService();
   }
 
-  async handle(req: Request, res: Response): Promise<Response<any, Record<string, any>>> {
+  async handle(req: Request, res: Response): Promise<Response<unknown, Record<string, unknown>>> {
     const allowedMethods = ['GET','POST']
     if (!allowedMethods.includes(req.method)) {
       return res.status(405).send(`method ${req.method} not accepted`)

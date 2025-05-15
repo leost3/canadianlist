@@ -14,7 +14,6 @@ export class StatusController {
 
   async getStatus(req: Request, res: Response): Promise<void> {
     try {
-      const status = this.statusService.getStatus();
       const datname = process.env.POSTGRES_DB
       const updatedAt = new Date().toISOString()
       const databaseVersionResult = await query("SHOW server_version;")

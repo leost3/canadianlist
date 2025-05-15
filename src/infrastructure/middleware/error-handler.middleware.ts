@@ -1,10 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { ZodError } from 'zod';
 
 export const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction
 ): void => {
   console.error('Error:', err);
