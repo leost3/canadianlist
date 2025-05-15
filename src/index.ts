@@ -1,6 +1,6 @@
-import express from 'express';
-import { configureMiddleware } from './infrastructure/middleware';
-import { registerRoutes } from './infrastructure/routes';
+import express from "express";
+import { configureMiddleware } from "./infrastructure/middleware";
+import { registerRoutes } from "./infrastructure/routes";
 
 const app = express();
 const PORT = process.env.PORT || 3000;

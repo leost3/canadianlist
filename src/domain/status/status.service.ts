@@ -1,17 +1,15 @@
-import { StatusEntity } from './status.entity';
-import { CreateStatusType, StatusSchema } from './status.schema';
-
-
+import { StatusEntity } from "./status.entity";
+import { CreateStatusType, StatusSchema } from "./status.schema";
 
 export class StatusService {
   getStatus(): StatusEntity {
     const status = {
-      serviceName: 'Express API',
-      version: '1.0.0',
+      serviceName: "Express API",
+      version: "1.0.0",
       nodeVersion: process.versions.node,
-      status: 'operational' as const,
+      status: "operational" as const,
       uptime: process.uptime(),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     // Validate the status object against the schema
@@ -22,11 +20,11 @@ export class StatusService {
     // Create a full status object from the input data
     const status = {
       serviceName: data.serviceName,
-      version: '1.0.0',
+      version: "1.0.0",
       nodeVersion: process.versions.node,
       status: data.status,
       uptime: process.uptime(),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     // Validate the status object against the schema
