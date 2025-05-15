@@ -1,9 +1,9 @@
 import { orquestrator } from "src/application/__utils__/orquestrator";
 import { query } from "src/infrastructure/database";
 
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
-const cleanDb = () => query("drop schema public cascade; create schema public")
+const cleanDb = () => query("drop schema public cascade; create schema public");
 
 describe("tests end points /migrations", () => {
   beforeAll(async () => {

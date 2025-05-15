@@ -1,6 +1,6 @@
 import { orquestrator } from "src/application/__utils__/orquestrator";
 
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
 describe("tests end points /status", () => {
@@ -14,8 +14,8 @@ describe("tests end points /status", () => {
     expect(responseBody).not.toBeNull();
     expect(typeof responseBody.updatedAt).toBe("string");
 
-    expect(responseBody.dependencies.database.version).toBe("16.0")
-    expect(responseBody.dependencies.database.maxConnections).toBe("100")
-    expect(responseBody.dependencies.database.openConnections).toBe(1)
-  })
-})
+    expect(responseBody.dependencies.database.version).toBe("16.0");
+    expect(responseBody.dependencies.database.maxConnections).toBe("100");
+    expect(responseBody.dependencies.database.openConnections).toBe(1);
+  });
+});

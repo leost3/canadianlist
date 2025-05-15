@@ -13,12 +13,12 @@ export class StatusController {
 
   async getStatus(req: Request, res: Response): Promise<void> {
     try {
-      const datname = process.env.POSTGRES_DB
-      const updatedAt = new Date().toISOString()
-      const databaseVersionResult = await query("SHOW server_version;")
-      const version = databaseVersionResult.rows[0].server_version
-      const maxConnectionsResult = await query("SHOW max_connections;")
-      const maxConnections = maxConnectionsResult.rows[0].max_connections
+      const datname = process.env.POSTGRES_DB;
+      const updatedAt = new Date().toISOString();
+      const databaseVersionResult = await query("SHOW server_version;");
+      const version = databaseVersionResult.rows[0].server_version;
+      const maxConnectionsResult = await query("SHOW max_connections;");
+      const maxConnections = maxConnectionsResult.rows[0].max_connections;
       const databaseOpenedConnectionsResult = await query({
         text: "SELECT COUNT(*):: int FROM pg_stat_activity WHERE datname = $1;",
         values: [datname],
