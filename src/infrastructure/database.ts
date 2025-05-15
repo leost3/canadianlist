@@ -6,7 +6,7 @@ const { Client } = pg
 const config = dotenv.config({ path: '.env.development' });
 dotenvExpand.expand(config);
 
-export const query = async (queryObject: any) => {
+export const query = async (queryObject: string | pg.QueryConfig) => {
   let client: pg.Client | undefined;
   try {
     client = await getNewClient()

@@ -1,6 +1,7 @@
-import { orquestrator } from "src/application/__utils__/orquestrator"
+import { orquestrator } from "src/application/__utils__/orquestrator";
 
-require('dotenv').config()
+import dotenv from 'dotenv';
+dotenv.config();
 
 describe('tests end points /status', () => {
   beforeAll(async () => {
@@ -16,7 +17,5 @@ describe('tests end points /status', () => {
     expect(responseBody.dependencies.database.version).toBe("16.0")
     expect(responseBody.dependencies.database.maxConnections).toBe("100")
     expect(responseBody.dependencies.database.openConnections).toBe(1)
-
-
   })
 })

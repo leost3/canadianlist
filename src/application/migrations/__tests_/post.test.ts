@@ -1,7 +1,8 @@
-import { orquestrator } from "src/application/__utils__/orquestrator"
-import { query } from "src/infrastructure/database"
+import { orquestrator } from "src/application/__utils__/orquestrator";
+import { query } from "src/infrastructure/database";
 
-require('dotenv').config()
+import dotenv from 'dotenv';
+dotenv.config();
 const cleanDb = () => query("drop schema public cascade; create schema public")
 
 
