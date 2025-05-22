@@ -76,7 +76,7 @@ export class StatusController {
 
   getWelcome(req: Request, res: Response): void {
     res.send(
-      "Hello from BuyCanadian!! Here you gonna find all canadian products with discount, fuck the US, fuck you english!!! vive la liberte!!!",
+      "Hello from Canada list!! Here you gonna find the neighbourhood or borough that fits you and your family! Enjoy"
     );
   }
 }
