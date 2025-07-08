@@ -15,7 +15,7 @@
     "migrations:up": "node-pg-migrate -m src/infrastructure/migrations --envPath .env.development  up",
     "build": "tsup src",
     "test": "npm run services:up &&  concurrently --success command-jest --names jest,server  \"jest --runInBand\" \"tsx watch src/index.ts\" --kill-others --hide server",
-    "test:watch": "jest --watchAll --runInBand",
+    "test:watch": "jest --watchAll --runInBand --verbose",
     "lint:prettier:check": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
     "lint:eslint:check": "eslint ."
